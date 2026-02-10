@@ -1,0 +1,244 @@
+/*
+Theme Name: EduBlink Child
+Theme URI: https://edublink.co/
+Template: edublink
+Author: Custom
+Author URI: 
+Description: Child theme for EduBlink - Custom Design
+Version: 1.0.0
+License: GNU General Public License v2 or later
+License URI: LICENSE
+Text Domain: edublink-child
+Tags: custom-design
+*/
+
+/* ============================================
+   Remove ALL WooCommerce CSS from Product Page
+   ============================================ */
+
+/* Remove all WooCommerce styles from single product page */
+body.single-product .woocommerce,
+body.single-product .woocommerce *,
+body.single-product .wc-tabs-wrapper,
+body.single-product .wc-tabs-wrapper *,
+body.single-product .woocommerce-tabs,
+body.single-product .woocommerce-tabs *,
+body.single-product .product,
+body.single-product .product *,
+body.single-product .summary,
+body.single-product .summary *,
+body.single-product .woocommerce-product-gallery,
+body.single-product .woocommerce-product-gallery *,
+body.single-product .woocommerce-product-details__short-description,
+body.single-product .woocommerce-product-details__short-description *,
+body.single-product .price,
+body.single-product .price *,
+body.single-product .stock,
+body.single-product .stock *,
+body.single-product .woocommerce-variation,
+body.single-product .woocommerce-variation *,
+body.single-product .variations,
+body.single-product .variations *,
+body.single-product .woocommerce-variation-description,
+body.single-product .woocommerce-variation-description *,
+body.single-product .single_add_to_cart_button,
+body.single-product .single_add_to_cart_button *,
+body.single-product .quantity,
+body.single-product .quantity *,
+body.single-product .woocommerce-product-attributes,
+body.single-product .woocommerce-product-attributes *,
+body.single-product .shop_attributes,
+body.single-product .shop_attributes *,
+body.single-product .woocommerce-Tabs-panel,
+body.single-product .woocommerce-Tabs-panel *,
+body.single-product .related,
+body.single-product .related *,
+body.single-product .upsells,
+body.single-product .upsells *,
+body.single-product .woocommerce-review,
+body.single-product .woocommerce-review *,
+body.single-product .commentlist,
+body.single-product .commentlist *,
+body.single-product .woocommerce-Reviews,
+body.single-product .woocommerce-Reviews * {
+	all: unset !important;
+	display: revert !important;
+	font-family: inherit !important;
+	color: inherit !important;
+	background: none !important;
+	border: none !important;
+	margin: 0 !important;
+	padding: 0 !important;
+	box-shadow: none !important;
+	text-shadow: none !important;
+	text-decoration: none !important;
+	line-height: normal !important;
+	font-size: inherit !important;
+	font-weight: normal !important;
+	font-style: normal !important;
+	letter-spacing: normal !important;
+	text-transform: none !important;
+	text-align: left !important;
+	vertical-align: baseline !important;
+	opacity: 1 !important;
+	visibility: visible !important;
+	position: static !important;
+	top: auto !important;
+	right: auto !important;
+	bottom: auto !important;
+	left: auto !important;
+	width: auto !important;
+	height: auto !important;
+	min-width: 0 !important;
+	min-height: 0 !important;
+	max-width: none !important;
+	max-height: none !important;
+	overflow: visible !important;
+	clip: auto !important;
+	clear: none !important;
+	float: none !important;
+	z-index: auto !important;
+	transform: none !important;
+	transition: none !important;
+	animation: none !important;
+}
+
+/* Remove all WooCommerce tabs styling - Raw Design */
+.woocommerce-tabs,
+.wc-tabs-wrapper {
+	all: unset !important;
+	display: block !important;
+	font-family: inherit !important;
+}
+
+.woocommerce-tabs *,
+.wc-tabs-wrapper * {
+	all: initial;
+	font-family: inherit;
+}
+
+.woocommerce-tabs ul.tabs,
+.woocommerce-tabs .wc-tabs {
+	all: initial;
+	display: block;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	font-family: inherit;
+}
+
+.woocommerce-tabs ul.tabs li,
+.woocommerce-tabs .wc-tabs li {
+	all: initial;
+	display: inline-block;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	font-family: inherit;
+}
+
+.woocommerce-tabs ul.tabs li a,
+.woocommerce-tabs .wc-tabs li a {
+	all: initial;
+	display: inline-block;
+	text-decoration: none;
+	color: inherit;
+	font-family: inherit;
+	cursor: pointer;
+}
+
+.woocommerce-tabs .woocommerce-Tabs-panel,
+.woocommerce-tabs .wc-tab {
+	all: initial;
+	display: block;
+	font-family: inherit;
+}
+
+.woocommerce-tabs .woocommerce-Tabs-panel *,
+.woocommerce-tabs .wc-tab * {
+	all: initial;
+	font-family: inherit;
+}
+
+/* Additional WooCommerce CSS Reset for Product Page */
+body.single-product .woocommerce div.product,
+body.single-product .woocommerce div.product * {
+	all: unset !important;
+	display: revert !important;
+}
+
+/* Remove WooCommerce specific classes styling */
+body.single-product .woocommerce div.product .summary,
+body.single-product .woocommerce div.product .summary *,
+body.single-product .woocommerce div.product .woocommerce-product-gallery,
+body.single-product .woocommerce div.product .woocommerce-product-gallery * {
+	all: unset !important;
+	display: revert !important;
+}
+
+/* Remove WooCommerce form styling */
+body.single-product .woocommerce form,
+body.single-product .woocommerce form *,
+body.single-product .woocommerce .form-row,
+body.single-product .woocommerce .form-row *,
+body.single-product .woocommerce input,
+body.single-product .woocommerce textarea,
+body.single-product .woocommerce select,
+body.single-product .woocommerce button {
+	all: unset !important;
+	display: revert !important;
+}
+
+/* Remove WooCommerce button styling */
+body.single-product .woocommerce button.button,
+body.single-product .woocommerce a.button,
+body.single-product .woocommerce input.button,
+body.single-product .woocommerce button.button.alt,
+body.single-product .woocommerce a.button.alt,
+body.single-product .woocommerce input.button.alt {
+	all: unset !important;
+	display: inline-block !important;
+	cursor: pointer !important;
+}
+
+/* Remove WooCommerce table styling */
+body.single-product .woocommerce table,
+body.single-product .woocommerce table *,
+body.single-product .woocommerce table.shop_attributes,
+body.single-product .woocommerce table.shop_attributes * {
+	all: unset !important;
+	display: revert !important;
+	border: none !important;
+}
+
+/* Remove WooCommerce list styling */
+body.single-product .woocommerce ul,
+body.single-product .woocommerce ol,
+body.single-product .woocommerce li {
+	all: unset !important;
+	display: revert !important;
+	list-style: none !important;
+}
+
+/* Custom Buy Now Button */
+.custom-buy-now-section {
+	margin-top: 20px;
+}
+
+.custom-buy-now-btn {
+	display: inline-block;
+	padding: 12px 24px;
+	background-color: #0073aa;
+	color: #fff;
+	text-decoration: none;
+	border-radius: 4px;
+	font-weight: bold;
+	transition: background-color 0.3s;
+}
+
+.custom-buy-now-btn:hover {
+	background-color: #005a87;
+	color: #fff;
+	text-decoration: none;
+}
+

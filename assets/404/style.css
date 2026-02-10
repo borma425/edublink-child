@@ -1,0 +1,341 @@
+/**
+ * 404 Error Page Styles
+ * 
+ * Custom styles for the 404 error page
+ * Located in: /assets/404/style.css
+ * 
+ * @package EduBlink_Child
+ */
+
+/* ============================================
+   404 Error Page Styles
+   ============================================ */
+
+.error-404-main {
+  width: 100%;
+  min-height: calc(100vh - 100px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 110px 40px 40px;
+}
+
+.error-404-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.error-404-section {
+  background: #141924;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 40px;
+  width: 100%;
+  max-width: 1474px;
+  overflow: hidden;
+}
+
+.error-404-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 60px 0;
+}
+
+.error-404-content {
+  display: flex;
+  flex-direction: column;
+  gap: 42px;
+  align-items: flex-end;
+  max-width: 880px;
+  width: 100%;
+}
+
+/* Hero Section with 404 */
+.error-404-hero {
+  height: 352px;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Badge 1 - Not Found (Top Left) */
+.error-badge-1 {
+  position: absolute;
+  left: 134px;
+  top: 102px;
+  width: 108.983px;
+  height: 104.437px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: rotate(-5deg);
+}
+
+.error-badge-card {
+  background: rgba(255, 255, 255, 0.1);
+  border: 0.5px solid rgba(243, 244, 246, 0.1);
+  box-shadow: 0px 2px 8px 0px rgba(196, 202, 212, 0.24);
+  border-radius: 24px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+}
+
+.error-icon {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+}
+
+.error-badge-text {
+  font-family: "Graphik Arabic", sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  color: white;
+  text-align: center;
+  margin: 0;
+}
+
+/* Badge 2 - Error (Top Right) */
+.error-badge-2 {
+  position: absolute;
+  left: 672.14px;
+  top: 143.67px;
+  width: 88.716px;
+  height: 48.666px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: rotate(6deg);
+}
+
+.error-badge-pill {
+  background: rgba(255, 255, 255, 0.1);
+  border: 0.5px solid rgba(243, 244, 246, 0.1);
+  box-shadow: 0px 2px 8px 0px rgba(196, 202, 212, 0.24);
+  border-radius: 99px;
+  padding: 8px 16px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+}
+
+.emoji {
+  font-size: 12px;
+  line-height: 16px;
+  color: #454f5f;
+  margin: 0;
+}
+
+.error-badge-text-2 {
+  font-family: "Graphik Arabic", sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  color: white;
+  margin: 0;
+}
+
+/* 404 Number */
+.error-404-number {
+  position: absolute;
+  left: 50%;
+  top: 48px;
+  transform: translateX(-50%);
+  font-family: "Graphik Arabic", sans-serif;
+  font-size: 236px;
+  line-height: 256px;
+  color: #4077f3;
+  letter-spacing: -4.72px;
+  text-align: center;
+  margin: 0;
+}
+
+/* Content Section */
+.error-404-text-content {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  align-items: center;
+  width: 100%;
+}
+
+.error-404-title {
+  font-family: "Graphik Arabic", sans-serif;
+  font-size: 56px;
+  line-height: 64px;
+  color: white;
+  text-align: center;
+  letter-spacing: -1.12px;
+  width: 100%;
+  margin: 0;
+}
+
+.error-404-description {
+  font-family: "Graphik Arabic", sans-serif;
+  font-size: 20px;
+  line-height: normal;
+  color: white;
+  text-align: center;
+  max-width: 620px;
+  margin: 0;
+}
+
+.error-404-button {
+  background: #ffffff0d;
+  color: #132346;
+  padding: 12px 24px;
+  border-radius: 16px;
+  font-family: "Graphik Arabic", sans-serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.4px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+  display: inline-block;
+}
+
+.error-404-button:hover {
+  opacity: 0.9;
+}
+
+/* Responsive Design for 404 Page */
+@media (max-width: 1024px) {
+  .error-404-number {
+    font-size: 180px;
+    line-height: 200px;
+  }
+
+  .error-badge-1 {
+    left: 80px;
+    top: 120px;
+  }
+
+  .error-badge-2 {
+    left: auto;
+    right: 80px;
+    top: 140px;
+  }
+
+  .error-404-hero {
+    height: 300px;
+  }
+}
+
+@media (max-width: 768px) {
+  .error-404-main {
+    padding: 80px 20px 40px;
+  }
+
+  .error-404-section {
+    border-radius: 30px;
+  }
+
+  .error-404-inner {
+    padding: 40px 20px;
+  }
+
+  .error-404-content {
+    gap: 30px;
+  }
+
+  .error-404-hero {
+    height: 250px;
+  }
+
+  .error-404-number {
+    font-size: 120px;
+    line-height: 140px;
+  }
+
+  .error-badge-1 {
+    left: 20px;
+    top: 100px;
+    transform: rotate(-5deg) scale(0.8);
+  }
+
+  .error-badge-2 {
+    right: 20px;
+    top: 120px;
+    transform: rotate(6deg) scale(0.8);
+  }
+
+  .error-404-title {
+    font-size: 36px;
+    line-height: 44px;
+  }
+
+  .error-404-description {
+    font-size: 16px;
+    padding: 0 20px;
+  }
+
+  .error-404-button {
+    font-size: 18px;
+    padding: 10px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .error-404-main {
+    padding: 70px 15px 30px;
+  }
+
+  .error-404-section {
+    border-radius: 20px;
+  }
+
+  .error-404-inner {
+    padding: 30px 15px;
+  }
+
+  .error-404-content {
+    gap: 24px;
+  }
+
+  .error-404-hero {
+    height: 200px;
+  }
+
+  .error-404-number {
+    font-size: 100px;
+    line-height: 120px;
+  }
+
+  .error-badge-1 {
+    left: 10px;
+    top: 80px;
+    transform: rotate(-5deg) scale(0.7);
+  }
+
+  .error-badge-2 {
+    right: 10px;
+    top: 100px;
+    transform: rotate(6deg) scale(0.7);
+  }
+
+  .error-404-title {
+    font-size: 28px;
+    line-height: 36px;
+  }
+
+  .error-404-description {
+    font-size: 14px;
+    padding: 0 15px;
+  }
+
+  .error-404-button {
+    font-size: 16px;
+    padding: 10px 18px;
+  }
+}
+

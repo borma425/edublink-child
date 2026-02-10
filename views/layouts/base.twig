@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>{% block title %}{{ site.name }}{% endblock %}</title>
+	{% block head_styles %}{% endblock %}
+	{% block head_scripts %}{% endblock %}
+</head>
+<body>
+	{% block header %}
+		{% include 'components/header.twig' %}
+	{% endblock %}
+
+	<main id="main-content" class="main-content">
+		{% block content %}{% endblock %}
+	</main>
+
+	{% block footer %}
+		{% include 'components/footer.twig' %}
+	{% endblock %}
+
+	{% block footer_scripts %}{% endblock %}
+</body>
+</html>
+

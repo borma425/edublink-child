@@ -1,0 +1,125 @@
+{#
+ * Footer Component
+ * 
+ * Main site footer with contact info, links, and social media
+ #}
+
+<!-- ===== START: Footer ===== -->
+<footer class="learnsimply-footer-section">
+    <div class="learnsimply-footer-container">
+        <!-- Contact Info -->
+        <div class="learnsimply-footer-contact-row">
+            <div class="learnsimply-contact-item">
+                <div class="learnsimply-contact-icon-wrapper">
+                    <img src="{{ theme_uri }}/assets/img/call.png" alt="Phone" class="learnsimply-contact-icon">
+                </div>
+                <div class="learnsimply-contact-text">
+                    <span class="learnsimply-contact-title">اتصل بنا في اي وقت</span>
+                    <span class="learnsimply-contact-value">{{ site.phone|default('01011653271') }}</span>
+                </div>
+            </div>
+
+            <div class="learnsimply-contact-item">
+                <div class="learnsimply-contact-icon-wrapper">
+                    <img src="{{ theme_uri }}/assets/img/map.png" alt="Location" class="learnsimply-contact-icon">
+                </div>
+                <div class="learnsimply-contact-text">
+                    <span class="learnsimply-contact-title">العنوان الخاص بنا</span>
+                    <span class="learnsimply-contact-value">{{ site.address|default('القاهرة - الدقي - وسط البلد عمراه رقم 5') }}</span>
+                </div>
+            </div>
+
+            <div class="learnsimply-contact-item">
+                <div class="learnsimply-contact-icon-wrapper">
+                    <img src="{{ theme_uri }}/assets/img/mail.png" alt="Email" class="learnsimply-contact-icon">
+                </div>
+                <div class="learnsimply-contact-text">
+                    <span class="learnsimply-contact-title">تواصل معنا عبر البريد</span>
+                    <span class="learnsimply-contact-value">{{ site.email|default('info@learrnsimply.com') }}</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Links -->
+        <div class="learnsimply-footer-links-wrapper">
+            <div class="learnsimply-footer-column">
+                <a href="{{ site.url }}" class="learnsimply-footer-logo-link">
+                    <img src="{{ theme_uri }}/assets/img/logo.png" alt="شعار اتعلم ببساطة" class="learnsimply-footer-logo-image">
+                    <span class="learnsimply-footer-logo-text">اتعلم ببساطة</span>
+                </a>
+                <p class="learnsimply-footer-description">
+                    ابدأ رحلتك في البرمجة من الصفر… بخطوات واضحة وسهلة
+                </p>
+
+                <div class="learnsimply-social-links">
+                    <h4 class="learnsimply-social-title">تابعنا علي منصات مختلفة</h4>
+                    <div class="learnsimply-social-icons">
+                        <a href="{{ site.facebook|default('#') }}" class="learnsimply-social-icon learnsimply-social-facebook" target="_blank">
+                            <img src="{{ theme_uri }}/assets/img/Facebook.png" alt="Facebook" class="learnsimply-social-image">
+                        </a>
+                        <a href="{{ site.twitter|default('#') }}" class="learnsimply-social-icon" target="_blank">
+                            <img src="{{ theme_uri }}/assets/img/Twitter.png" alt="Twitter" class="learnsimply-social-image">
+                        </a>
+                        <a href="{{ site.instagram|default('#') }}" class="learnsimply-social-icon" target="_blank">
+                            <img src="{{ theme_uri }}/assets/img/Instagram.png" alt="Instagram" class="learnsimply-social-image">
+                        </a>
+                        <a href="{{ site.linkedin|default('#') }}" class="learnsimply-social-icon" target="_blank">
+                            <img src="{{ theme_uri }}/assets/img/Linkedin.png" alt="LinkedIn" class="learnsimply-social-image">
+                        </a>
+                        <a href="{{ site.telegram|default('#') }}" class="learnsimply-social-icon" target="_blank">
+                            <img src="{{ theme_uri }}/assets/img/telegram.png" alt="Telegram" class="learnsimply-social-image">
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="learnsimply-footer-column">
+                <h4 class="learnsimply-footer-column-title">راوبط الموقع</h4>
+                <ul class="learnsimply-footer-links-list">
+                    <li><a href="{{ site.url }}" class="learnsimply-footer-link">الرئيسيه</a></li>
+                    <li><a href="#" class="learnsimply-footer-link">الجامعات</a></li>
+                    <li><a href="#" class="learnsimply-footer-link">الكليات</a></li>
+                    <li><a href="#courses" class="learnsimply-footer-link">كورسات</a></li>
+                    <li><a href="{{ site.url }}/about" class="learnsimply-footer-link">من نحن</a></li>
+                    <li><a href="#" class="learnsimply-footer-link">مقالات</a></li>
+                    <li><a href="#" class="learnsimply-footer-link">خدماتنا</a></li>
+                </ul>
+            </div>
+
+            <div class="learnsimply-footer-column">
+                <h4 class="learnsimply-footer-column-title">خدمات المنصة</h4>
+                <ul class="learnsimply-footer-links-list">
+                    <li><a href="#" class="learnsimply-footer-link">استشارات تعليمية مخصصة</a></li>
+                    <li><a href="#" class="learnsimply-footer-link">دعم عملية التقديم للجامعات</a></li>
+                    <li><a href="#" class="learnsimply-footer-link">إعداد للامتحانات الدولية والمحلية</a></li>
+                    <li><a href="#" class="learnsimply-footer-link">خدمات المنح الدراسية والمساعدات المالية</a></li>
+                    <li><a href="#" class="learnsimply-footer-link">منصات التواصل والتوجيه</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Footer Bottom -->
+        <div class="learnsimply-footer-bottom">
+            <div class="learnsimply-footer-legal">
+                <a href="{{ site.url }}/contact" class="learnsimply-footer-legal-link">تواصل معنا</a>
+                <a href="{{ site.url }}/terms" class="learnsimply-footer-legal-link">الشروط والأحكام</a>
+                <a href="{{ site.url }}/privacy" class="learnsimply-footer-legal-link">سياسة الخصوصية</a>
+            </div>
+            <p class="learnsimply-footer-copyright">
+                © {{ "now"|date("Y") }} جميع الحقوق محفوظة، {{ site.name|default('اتعلم ببساطة') }} | صنع بواسطه فريق {{ site.name|default('اتعلم ببساطة') }}.com
+            </p>
+            <img src="{{ theme_uri }}/assets/img/rascoda.png" alt="Rascoda" class="learnsimply-footer-brand-logo">
+        </div>
+
+        <!-- Payment Methods -->
+        <div class="learnsimply-payment-methods">
+            <p class="learnsimply-payment-title">ادفع ببساطة من خلال طريقة الدفع المناسبة لك</p>
+            <div class="learnsimply-payment-logos">
+                <img src="{{ theme_uri }}/assets/img/vodafone.png" alt="Vodafone Cash" class="learnsimply-payment-logo">
+                <img src="{{ theme_uri }}/assets/img/mastercard.png" alt="Mastercard" class="learnsimply-payment-logo">
+                <img src="{{ theme_uri }}/assets/img/visa.png" alt="Visa" class="learnsimply-payment-logo">
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- ===== END: Footer ===== -->

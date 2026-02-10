@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>404 - الصفحة غير موجودة | اتعلم ببساطة</title>
+    <link rel="stylesheet" href="{{ theme_uri }}/assets/global/styles.css" />
+    <link rel="stylesheet" href="{{ theme_uri }}/assets/404/style.css" />
+  </head>
+  <body class="learnsimply-homepage-body">
+    
+    {% include 'components/header.twig' %}
+
+    <!-- ===== START: 404 Main Section ===== -->
+    <main class="error-404-main">
+      <div class="error-404-container">
+        <div class="error-404-section">
+          <div class="error-404-inner">
+            <div class="error-404-content">
+              <!-- Hero with 404 Number -->
+              <div class="error-404-hero">
+                <!-- Not Found Badge (Top Left) -->
+                <div class="error-badge-1">
+                  <div class="error-badge-card">
+                    <div class="error-icon">
+                      <svg
+                        width="32"
+                        height="32"
+                        fill="none"
+                        viewBox="0 0 32 32"
+                      >
+                        <path
+                          clip-rule="evenodd"
+                          d="M16 2.66666C8.63616 2.66666 2.66666 8.63616 2.66666 16C2.66666 23.3638 8.63616 29.3333 16 29.3333C23.3638 29.3333 29.3333 23.3638 29.3333 16C29.3333 8.63616 23.3638 2.66666 16 2.66666ZM16 22.6667C15.2636 22.6667 14.6667 22.0697 14.6667 21.3333C14.6667 20.597 15.2636 20 16 20C16.7364 20 17.3333 20.597 17.3333 21.3333C17.3333 22.0697 16.7364 22.6667 16 22.6667ZM16 9.33333C15.2636 9.33333 14.6667 9.9303 14.6667 10.6667V16C14.6667 16.7364 15.2636 17.3333 16 17.3333C16.7364 17.3333 17.3333 16.7364 17.3333 16V10.6667C17.3333 9.9303 16.7364 9.33333 16 9.33333Z"
+                          fill="#F16D7C"
+                          fill-rule="evenodd"
+                        />
+                      </svg>
+                    </div>
+                    <p class="error-badge-text">غير موجود!</p>
+                  </div>
+                </div>
+
+                <!-- Error Badge (Top Right) -->
+                <div class="error-badge-2">
+                  <div class="error-badge-pill">
+                    <p class="emoji">💥</p>
+                    <p class="error-badge-text-2">خطاء</p>
+                  </div>
+                </div>
+
+                <!-- 404 Large Number -->
+                <p class="error-404-number">404</p>
+              </div>
+
+              <!-- Content Section -->
+              <div class="error-404-text-content">
+                <h1 class="error-404-title">لا توجد نتائج مطابقة!</h1>
+                <p class="error-404-description">
+                  نعتذر، لا توجد نتائج مطابقة لبحثك. يرجى التحقق من كتابة البحث
+                  بشكل صحيح أو المحاولة بكلمات مختلفة
+                </p>
+                <a href="{{ site.url }}" class="error-404-button">
+                  اذهب للصفحه الرئيسيه
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <!-- ===== END: 404 Main Section ===== -->
+
+    {% include 'components/footer.twig' %}
+
+    <!-- Floating Scroll to Top Button -->
+    <button class="learnsimply-scroll-to-top" aria-label="الرجوع للأعلى">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <path
+          d="M12 19V5M5 12l7-7 7 7"
+          stroke="white"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    </button>
+
+    <script src="{{ theme_uri }}/assets/global/script.js"></script>
+    <script src="{{ theme_uri }}/assets/404/script.js"></script>
+  </body>
+</html>
+

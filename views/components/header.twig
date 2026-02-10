@@ -1,0 +1,75 @@
+{#
+ * Header Component
+ * 
+ * Main site header with logo, navigation, and auth buttons
+ #}
+
+<!-- ===== START: Header Section ===== -->
+<header class="learnsimply-header-main-container">
+  <div class="learnsimply-header-border-overlay"></div>
+
+  <div class="learnsimply-header-content-wrapper">
+    <!-- Right Side: Logo and Menu -->
+    <div class="learnsimply-header-right-side">
+      <!-- Logo -->
+      <a href="{{ site.url }}" class="learnsimply-header-logo-container">
+        <div class="learnsimply-header-logo-image-wrapper">
+          <img
+            src="{{ theme_uri }}/assets/img/logo.png"
+            alt="اتعلم ببساطة"
+            class="learnsimply-header-logo-image"
+          />
+        </div>
+        <p class="learnsimply-header-logo-text">اتعلم ببساطة</p>
+      </a>
+
+      <!-- Navigation Menu -->
+      <nav class="learnsimply-header-navigation-menu">
+        {% if main_menu and main_menu.items %}
+          {% for item in main_menu.items %}
+            <a 
+              href="{{ item.url }}" 
+              class="learnsimply-header-menu-item {% if item.current %}learnsimply-header-menu-item-active{% endif %}"
+              {% if item.target %}target="{{ item.target }}"{% endif %}
+            >
+              <p class="learnsimply-header-menu-text {% if item.current %}learnsimply-header-menu-text-active{% endif %}">
+                {{ item.title }}
+              </p>
+            </a>
+          {% endfor %}
+        {% else %}
+          {# Fallback menu if main_menu is not available #}
+        <a href="{{ site.url }}" class="learnsimply-header-menu-item {% if is_front_page %}learnsimply-header-menu-item-active{% endif %}">
+          <p class="learnsimply-header-menu-text {% if is_front_page %}learnsimply-header-menu-text-active{% endif %}">
+            الرئيسية
+          </p>
+        </a>
+        {% endif %}
+      </nav>
+    </div>
+
+    <!-- Left Side: Auth Buttons -->
+    <div class="learnsimply-header-auth-buttons-container">
+      {% if user %}
+        <a href="{{ site.url }}/dashboard/" class="learnsimply-header-btn-login">
+          <span class="learnsimply-header-btn-text">حسابي</span>
+        </a>
+      {% else %}
+        <a href="{{ site.url }}/dashboard/" class="learnsimply-header-btn-login">
+          <span class="learnsimply-header-btn-text">تسجيل دخول</span>
+        </a>
+        <a href="{{ site.url }}/signup/" class="learnsimply-header-btn-signup">
+          <span class="learnsimply-header-btn-text">انشاء حساب</span>
+        </a>
+      {% endif %}
+    </div>
+
+    <!-- Mobile Menu Toggle -->
+    <button class="learnsimply-header-mobile-toggle" aria-label="القائمة">
+      <span class="learnsimply-mobile-toggle-bar"></span>
+      <span class="learnsimply-mobile-toggle-bar"></span>
+      <span class="learnsimply-mobile-toggle-bar"></span>
+    </button>
+  </div>
+</header>
+<!-- ===== END: Header Section ===== -->
