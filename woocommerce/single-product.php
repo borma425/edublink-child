@@ -37,6 +37,7 @@ if ( ! $product ) {
 // Get Timber context
 $context = Timber::context();
 
+
 // Add theme directory URI to context
 $context['theme_uri'] = get_stylesheet_directory_uri();
 
