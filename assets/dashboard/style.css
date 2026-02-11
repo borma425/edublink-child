@@ -1,0 +1,21 @@
+/**
+ * Dashboard Page Custom Styles
+ * This file contains CSS overrides for the dashboard page
+ * Path: /dashboard/
+ */
+
+/* Add your custom dashboard styles here */
+/* These styles will override the default theme styles */
+
+/**
+ * Tutor LMS Dashboard main wrapper
+ * <div class="tutor-wrap tutor-wrap-parent tutor-dashboard tutor-frontend-dashboard ...">
+ */
+.tutor-wrap.tutor-dashboard {
+    background: #000000 !important;
+}
+
+/* Example: change inner content background as well */
+.tutor-wrap.tutor-dashboard .tutor-dashboard-content {
+    background: rgba(0, 0, 0, 0.6) !important;
+}

@@ -108,7 +108,7 @@ document.addEventListener("DOMContentLoaded", function () {
 			stars.forEach((star, index) => {
 				if (index < value) {
 					star.classList.add("is-active");
-				} else {
+        } else {
 					star.classList.remove("is-active");
 				}
 			});
@@ -131,15 +131,15 @@ document.addEventListener("DOMContentLoaded", function () {
 			});
 
 			star.addEventListener("click", (e) => {
-				e.preventDefault();
+      e.preventDefault();
 				currentRating = value;
 				if (ratingSelect) {
 					ratingSelect.value = String(currentRating);
 				}
 				applyVisual(currentRating);
 			});
-		});
-	});
+        });
+      });
 
 	// Description card expand/collapse functionality
 	const showMoreBtn = document.querySelector(".show-more-btn");
@@ -152,7 +152,7 @@ document.addEventListener("DOMContentLoaded", function () {
 			if (isExpanded) {
 				descriptionCard.classList.remove("expanded");
 				this.textContent = "عرض المزيد";
-			} else {
+    } else {
 				descriptionCard.classList.add("expanded");
 				this.textContent = "عرض أقل";
               }

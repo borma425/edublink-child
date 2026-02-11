@@ -1,0 +1,21 @@
+/**
+ * Signup Page Custom Styles
+ * This file contains CSS overrides for the signup page
+ * Path: /signup/
+ */
+
+/* Add your custom signup styles here */
+/* These styles will override the default theme styles */
+
+/* Test: Change body background to verify CSS is loading */
+body {
+    background: #000000 !important;
+}
+
+/* Test: Change main content area */
+main#main,
+.site-content,
+.content-area {
+    background: #1a1a1a !important;
+}
+

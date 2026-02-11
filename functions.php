@@ -253,6 +253,8 @@ function edublink_child_load_page_assets() {
 	if ( is_404() ) $page_type = '404';
 	elseif ( is_front_page() ) $page_type = 'home';
 	elseif ( is_page( 'about_me' ) || is_page_template( 'page-about_me.php' ) ) $page_type = 'about-me';
+	elseif ( is_page( 'dashboard' ) ) $page_type = 'dashboard';
+	elseif ( is_page( 'signup' ) ) $page_type = 'signup';
 	elseif ( is_product() ) {
 		// Check if product has bundles
 		global $wpdb;
@@ -279,6 +281,26 @@ function edublink_child_load_page_assets() {
 		if ( empty( $page_type ) && is_page() ) {
 			$page_slug = get_post_field( 'post_name', get_the_ID() );
 			if ( $page_slug === 'about_me' ) $page_type = 'about-me';
+			elseif ( $page_slug === 'dashboard' ) $page_type = 'dashboard';
+			elseif ( $page_slug === 'signup' ) $page_type = 'signup';
+		}
+		// Check for Tutor LMS dashboard (via query vars)
+		if ( empty( $page_type ) && function_exists( 'tutor_utils' ) ) {
+			global $wp_query;
+			if ( isset( $wp_query->query_vars['tutor_dashboard_page'] ) || isset( $wp_query->query_vars['tutor_dashboard'] ) ) {
+				$page_type = 'dashboard';
+			}
+		}
+		// Check URL path for dashboard or signup
+		if ( empty( $page_type ) ) {
+			$request_uri = isset( $_SERVER['REQUEST_URI'] ) ? esc_url_raw( wp_unslash( $_SERVER['REQUEST_URI'] ) ) : '';
+			if ( ! empty( $request_uri ) ) {
+				if ( strpos( $request_uri, '/dashboard/' ) !== false || strpos( $request_uri, '/dashboard' ) !== false ) {
+					$page_type = 'dashboard';
+				} elseif ( strpos( $request_uri, '/signup/' ) !== false || strpos( $request_uri, '/signup' ) !== false ) {
+					$page_type = 'signup';
+				}
+			}
 		}
 	}
 	
@@ -287,14 +309,86 @@ function edublink_child_load_page_assets() {
 		$js_file = $assets_dir . '/' . $page_type . '/script.js';
 		
 		if ( file_exists( $css_file ) ) {
-			wp_enqueue_style( 'edublink-' . $page_type . '-style', $assets_uri . '/' . $page_type . '/style.css', array( 'edublink-child-style' ), filemtime( $css_file ) );
+			// Load with high priority and no dependencies to ensure it loads last and can override everything
+			// Using empty array for dependencies ensures it loads after all other styles
+			wp_enqueue_style( 'edublink-' . $page_type . '-style', $assets_uri . '/' . $page_type . '/style.css', array(), filemtime( $css_file ) );
 		}
 		if ( file_exists( $js_file ) ) {
 			wp_enqueue_script( 'edublink-' . $page_type . '-script', $assets_uri . '/' . $page_type . '/script.js', array( 'jquery' ), filemtime( $js_file ), true );
 		}
 	}
 }
-add_action( 'wp_enqueue_scripts', 'edublink_child_load_page_assets', 100 );
+add_action( 'wp_enqueue_scripts', 'edublink_child_load_page_assets', 999 );
+
+/**
+ * Add page-specific CSS after all other styles (including Elementor)
+ * This ensures our custom CSS can override everything
+ */
+function edublink_child_add_page_css_late() {
+	$assets_dir = get_stylesheet_directory() . '/assets';
+	$assets_uri = get_stylesheet_directory_uri() . '/assets';
+	$page_type = '';
+	
+	// Re-detect page type (same logic as edublink_child_load_page_assets)
+	if ( is_404() ) $page_type = '404';
+	elseif ( is_front_page() ) $page_type = 'home';
+	elseif ( is_page( 'about_me' ) || is_page_template( 'page-about_me.php' ) ) $page_type = 'about-me';
+	elseif ( is_page( 'dashboard' ) ) $page_type = 'dashboard';
+	elseif ( is_page( 'signup' ) ) $page_type = 'signup';
+	elseif ( is_product() ) {
+		global $wpdb;
+		$product_id = get_the_ID();
+		$has_bundles = $wpdb->get_var( $wpdb->prepare(
+			"SELECT COUNT(*) FROM {$wpdb->prefix}asnp_wepb_simple_bundle_items WHERE bundle_id = %d",
+			$product_id
+		) );
+		$page_type = ( $has_bundles > 0 ) ? 'single-product-bundle' : 'single-product';
+	}
+	elseif ( is_shop() || is_product_category() || is_product_tag() ) $page_type = 'product_archive';
+	elseif ( is_cart() ) $page_type = 'cart';
+	elseif ( is_checkout() ) $page_type = 'checkout';
+	elseif ( function_exists( 'tutor_utils' ) ) {
+		$course_post_type = tutor()->course_post_type;
+		if ( is_singular( $course_post_type ) ) $page_type = 'single_course';
+		elseif ( is_post_type_archive( $course_post_type ) || is_tax( 'course-category' ) ) $page_type = 'course_archive';
+	}
+	
+	if ( empty( $page_type ) ) {
+		$template = get_page_template_slug();
+		if ( ! empty( $template ) ) $page_type = str_replace( array( '.php', '-', '/' ), array( '', '_', '_' ), basename( $template ) );
+		if ( empty( $page_type ) && is_page() ) {
+			$page_slug = get_post_field( 'post_name', get_the_ID() );
+			if ( $page_slug === 'about_me' ) $page_type = 'about-me';
+			elseif ( $page_slug === 'dashboard' ) $page_type = 'dashboard';
+			elseif ( $page_slug === 'signup' ) $page_type = 'signup';
+		}
+		if ( empty( $page_type ) && function_exists( 'tutor_utils' ) ) {
+			global $wp_query;
+			if ( isset( $wp_query->query_vars['tutor_dashboard_page'] ) || isset( $wp_query->query_vars['tutor_dashboard'] ) ) {
+				$page_type = 'dashboard';
+			}
+		}
+		if ( empty( $page_type ) ) {
+			$request_uri = isset( $_SERVER['REQUEST_URI'] ) ? esc_url_raw( wp_unslash( $_SERVER['REQUEST_URI'] ) ) : '';
+			if ( ! empty( $request_uri ) ) {
+				if ( strpos( $request_uri, '/dashboard/' ) !== false || strpos( $request_uri, '/dashboard' ) !== false ) {
+					$page_type = 'dashboard';
+				} elseif ( strpos( $request_uri, '/signup/' ) !== false || strpos( $request_uri, '/signup' ) !== false ) {
+					$page_type = 'signup';
+				}
+			}
+		}
+	}
+	
+	// Add CSS via wp_head to ensure it loads after all other styles (including Elementor)
+	if ( ! empty( $page_type ) && is_dir( $assets_dir . '/' . $page_type ) ) {
+		$css_file = $assets_dir . '/' . $page_type . '/style.css';
+		if ( file_exists( $css_file ) ) {
+			echo '<link rel="stylesheet" id="edublink-' . esc_attr( $page_type ) . '-style-late" href="' . esc_url( $assets_uri . '/' . $page_type . '/style.css?v=' . filemtime( $css_file ) ) . '" type="text/css" media="all" />' . "\n";
+		}
+	}
+}
+add_action( 'wp_head', 'edublink_child_add_page_css_late', 9999 );
 
 /**
  * Remove WooCommerce CSS
