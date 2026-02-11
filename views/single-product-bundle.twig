@@ -15,9 +15,9 @@
     <main class="course-main-content">
       <div class="container">
         <div class="course-page">
-          <!-- بطاقة تفاصيل الباقة (على اليسار) -->
+        <!-- Bundle details card (left side) -->
           <div class="course-details-card">
-            <!-- شريط الخصم العلوي -->
+            <!-- Top discount ribbon -->
             {% if discount_percent > 0 %}
             <div class="discount-banner">
               <p class="discount-banner-text">
@@ -26,7 +26,7 @@
             </div>
             {% endif %}
 
-            <!-- صندوق الإحصائيات -->
+            <!-- Stats box -->
             <div class="stats-box">
               {% if bundle_items_count > 0 %}
               <div class="stat-item">
@@ -42,7 +42,7 @@
 
 
 
-              <!-- لغة المحتوى -->
+              <!-- Content language -->
               <div class="stat-item">
                 <svg class="stat-icon" fill="none" viewBox="0 0 24 24">
                   <path d="M12 2C6.477 2 2 6.477 2 12C2 17.523 6.477 22 12 22C17.523 22 22 17.523 22 12C22 6.477 17.523 2 12 2Z" stroke="#999EB2" stroke-width="1.5" />
@@ -54,7 +54,7 @@
                 <p class="stat-text">اللغة العربية</p>
               </div>
 
-              <!-- نوع الوصول -->
+              <!-- Access type -->
               <div class="stat-item">
                 <svg class="stat-icon" fill="none" viewBox="0 0 24 24">
                   <circle cx="12" cy="12" r="9" stroke="#999EB2" stroke-width="1.5" />
@@ -64,9 +64,9 @@
               </div>
             </div>
 
-            <!-- صندوق التفاصيل -->
+            <!-- Details box -->
             <div class="details-box">
-              <!-- الفئة -->
+              <!-- Category -->
               {% if categories|length > 0 %}
               <div class="detail-row">
                 <svg class="detail-icon" fill="none" viewBox="0 0 24 24">
@@ -81,7 +81,7 @@
               </div>
               {% endif %}
 
-              <!-- المحاضر -->
+         <!-- Instructor -->
               <div class="detail-row">
                 <svg class="detail-icon" fill="none" viewBox="0 0 24 24">
                   <path d="M4.75 8.75C6.95914 8.75 8.75 6.95914 8.75 4.75C8.75 2.54086 6.95914 0.75 4.75 0.75C2.54086 0.75 0.75 2.54086 0.75 4.75C0.75 6.95914 2.54086 8.75 4.75 8.75Z" stroke="#999EB2" stroke-width="1.5" transform="translate(7.25, 2)" />
@@ -99,7 +99,7 @@
                 </div>
               </div>
 
-              <!-- آخر تحديث -->
+         <!-- Last update -->
               {% if product_updated %}
               <div class="detail-row">
                 <svg class="detail-icon" fill="none" viewBox="0 0 24 24">
@@ -118,7 +118,7 @@
 
             </div>
 
-            <!-- صندوق السعر -->
+            <!-- Price box -->
             <div class="price-box">
               <div class="price-section">
                 {% if discount_percent > 0 %}
@@ -137,7 +137,7 @@
               </div>
             </div>
 
-            <!-- أزرار الإجراءات -->
+            <!-- Action buttons -->
             <div class="action-buttons">
               <button class="share-button" onclick="shareProduct()">
                 <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
@@ -151,7 +151,7 @@
               {% endif %}
             </div>
 
-            <!-- قائمة المميزات -->
+            <!-- Features list -->
             {% if first_five_features|length > 0 %}
             <div class="features-box">
               <div class="features-list">
@@ -169,18 +169,18 @@
             {% endif %}
           </div>
 
-          <!-- السكشن الموجود (على اليمين) -->
+        <!-- Right-hand section -->
           <div class="course-info-section">
-            <!-- صورة الباقة -->
+            <!-- Bundle image -->
             <div class="course-image">
               <img src="{{ product_image }}" alt="{{ product_title }}" />
             </div>
 
-            <!-- محتوى الباقة -->
+            <!-- Bundle content -->
             <div class="course-content">
-              <!-- الصف الأول -->
+              <!-- First row -->
               <div class="info-row">
-                <!-- التقييم -->
+                <!-- Rating -->
                 {% if rating > 0 %}
                 <div class="rating-badge">
                   <div class="rating-text">{{ rating }} ({{ rating_count }} تقيم)</div>
@@ -190,12 +190,12 @@
                 </div>
                 {% endif %}
 
-                <!-- الجانب الأيسر -->
+                <!-- Left side -->
                 <div class="info-left">
-                  <!-- شارة باقة -->
+                  <!-- Bundle badge -->
                   <div class="course-badge">باقة</div>
 
-                  <!-- عدد الطلاب -->
+                  <!-- Students count -->
                   {% if students_count > 0 %}
                   <div class="students-count">
                     <div class="students-count-text">
@@ -212,12 +212,12 @@
                 </div>
               </div>
 
-              <!-- عنوان الباقة -->
+              <!-- Bundle title -->
               <div class="course-title">
                 {{ product_title }}
               </div>
 
-              <!-- وصف الباقة -->
+              <!-- Bundle description -->
               <div class="course-description">
                 {{ product_excerpt ?: product_content|striptags|slice(0, 200) ~ '...' }}
               </div>
@@ -225,21 +225,21 @@
           </div>
         </div>
 
-        <!-- بطاقة المدرب -->
+        <!-- Instructor card -->
         {% if product_author %}
         <div class="instructor-card">
-          <!-- معلومات المدرب - الجانب الأيمن -->
+          <!-- Instructor info - right side -->
           <div class="instructor-info">
-            <!-- النصوص -->
+            <!-- Text content -->
             <div class="instructor-text">
               <p class="instructor-name">{{ product_author.name }}</p>
               <p class="instructor-title">{{ instructor_title }}</p>
             </div>
 
-            <!-- صورة المدرب -->
+            <!-- Instructor image -->
             <div class="instructor-avatar">
               <div class="instructor-avatar-inner">
-                <!-- دوائر التأثير -->
+                <!-- Background circles -->
                 <div class="blur-circle blur-circle-1">
                   <svg width="100%" height="100%" viewBox="0 0 37.0813 37.0813" fill="none">
                     <defs>
@@ -277,24 +277,24 @@
                   </svg>
                 </div>
 
-                <!-- الصورة -->
+                <!-- Image -->
                 <img src="{{ product_author.avatar ?: theme_uri ~ '/assets/img/ellipse1.png' }}" alt="{{ product_author.name }}" />
               </div>
             </div>
           </div>
 
-          <!-- شارة الخبرة - الجانب الأيسر -->
+          <!-- Experience badge - left side -->
           <div class="experience-badge">
             <p class="experience-text">+7 سنين خبرة</p>
           </div>
         </div>
         {% endif %}
 
-        <!-- بطاقة وصف الباقة -->
+        <!-- Bundle description card -->
         {% if product_content %}
         <div class="description-card">
           <div class="card-content">
-            <!-- عنوان القسم -->
+            <!-- Section title -->
             <div class="section-header">
               <div class="section-icon-box">
                 <svg width="33" height="33" fill="none" viewBox="0 0 33 33">
@@ -304,23 +304,23 @@
               <h2 class="section-title">وصف الباقة</h2>
             </div>
 
-            <!-- نص الوصف -->
+            <!-- Description text -->
             <div class="description-text">
               {{ product_content|raw }}
             </div>
           </div>
 
-          <!-- التدرج السفلي مع زر عرض المزيد -->
+          <!-- Bottom gradient with show-more button -->
           <div class="gradient-overlay">
             <p class="show-more-btn">عرض المزيد</p>
           </div>
         </div>
         {% endif %}
 
-        <!-- بطاقة محتوى الباقة -->
+        <!-- Bundle content card -->
         {% if bundle_items|length > 0 %}
         <div class="package-content-card">
-          <!-- العنوان مع الأيقونة -->
+          <!-- Title with icon -->
           <div class="package-content-header">
             <h2 class="package-content-title">الدورات في العرض ({{ bundle_items|length }})</h2>
             <div class="package-content-icon-box">
@@ -328,18 +328,18 @@
             </div>
           </div>
 
-          <!-- قائمة الدورات -->
+          <!-- Courses list -->
           <div class="courses-list">
             {% for item in bundle_items %}
             <div class="course-item-wrapper">
               <div class="course-item">
                 <div class="course-item-content">
-                  <!-- زر عرض التفاصيل -->
+                  <!-- View details button -->
                   <div class="course-details-btn-wrapper">
                     <a href="{{ item.link }}" class="course-details-btn">عرض تفاصيل اكثر</a>
                   </div>
 
-                  <!-- معلومات الكورس -->
+                  <!-- Course info -->
                   <div class="course-info-wrapper">
                     <div class="course-text-info">
                       <h3 class="course-item-title">{{ item.title }}</h3>
@@ -354,7 +354,7 @@
                       </div>
                     </div>
 
-                    <!-- صورة الكورس -->
+                        <!-- Course image -->
                     <div class="course-item-image">
                       <img src="{{ item.image ?: theme_uri ~ '/assets/img/DataStructure.png' }}" alt="{{ item.title }}" />
                     </div>
@@ -367,7 +367,7 @@
         </div>
         {% endif %}
 
-        <!-- نموذج إضافة تقييم جديد للباقة -->
+        <!-- Add new review form for the bundle -->
         {% if reviews_form %}
         <div class="add-review-section">
           <div class="card-content">
@@ -377,7 +377,7 @@
                   <path clip-rule="evenodd" d="M16.5 30.25C10.0182 30.25 6.77728 30.25 4.76365 28.2363C2.75 26.2228 2.75 22.9818 2.75 16.5C2.75 10.0182 2.75 6.77728 4.76365 4.76365C6.77728 2.75 10.0182 2.75 16.5 2.75C22.9818 2.75 26.2228 2.75 28.2363 4.76365C30.25 6.77728 30.25 10.0182 30.25 16.5C30.25 22.9818 30.25 26.2228 28.2363 28.2363C26.2228 30.25 22.9818 30.25 16.5 30.25ZM16.5 24.4062C17.0695 24.4062 17.5312 23.9445 17.5312 23.375V15.125C17.5312 14.5555 17.0695 14.0938 16.5 14.0938C15.9305 14.0938 15.4688 14.5555 15.4688 15.125V23.375C15.4688 23.9445 15.9305 24.4062 16.5 24.4062ZM16.5 9.625C17.2594 9.625 17.875 10.2406 17.875 11C17.875 11.7594 17.2594 12.375 16.5 12.375C15.7406 12.375 15.125 11.7594 15.125 11C15.125 10.2406 15.7406 9.625 16.5 9.625Z" fill="white" fill-rule="evenodd" />
                 </svg>
               </div>
-              <h2 class="section-title">أضف تقييمك للباقة</h2>
+             <h2 class="section-title">أضف تقييمك للباقة</h2>
             </div>
             <div class="add-review-form">
               {{ reviews_form|raw }}
@@ -386,7 +386,7 @@
         </div>
         {% endif %}
 
-        <!-- بطاقة التقييمات للباثقة (نفس تصميم صفحة الكورس) -->
+       <!-- Reviews card for the bundle (same design as course page) -->
         {% if course_reviews|length > 0 %}
         <div class="reviews-section">
           <!-- Ratings Overview -->

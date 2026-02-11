@@ -179,7 +179,7 @@ if ( comments_open( $context['product_id'] ) ) {
 	// Custom rating + textarea structure (stars + hidden select) similar to theme's original markup.
 	if ( wc_review_ratings_enabled() ) {
 		$comment_form['comment_field']  = '<div class="comment-form-rating">';
-		// Arabic label: "تقييمك" مع توضيح اختيار عدد النجوم
+		// Arabic label: \"تقييمك\" with clarification about selecting number of stars
 		$comment_form['comment_field'] .= '<label for="rating" id="comment-form-rating-label">' . esc_html__( 'تقييمك (اختر عدد النجوم من 1 إلى 5)', 'woocommerce' ) . ( wc_review_ratings_required() ? '&nbsp;<span class="required">*</span>' : '' ) . '</label>';
 		$comment_form['comment_field'] .= '<p class="stars"><span role="group" aria-labelledby="comment-form-rating-label">';
 		$comment_form['comment_field'] .= '<a role="radio" tabindex="0" aria-checked="false" class="star-1" href="#">1 ' . esc_html__( 'من أصل 5 نجوم', 'woocommerce' ) . '</a>';
@@ -201,7 +201,7 @@ if ( comments_open( $context['product_id'] ) ) {
 		$comment_form['comment_field'] = '';
 	}
 
-	// Review textarea - Arabic label: "مراجعتك"
+	// Review textarea - Arabic label: \"مراجعتك\"
 	$comment_form['comment_field'] .= '<p class="comment-form-comment"><label for="comment">' . esc_html__( 'مراجعتك', 'woocommerce' ) . '&nbsp;<span class="required">*</span></label><textarea id="comment" name="comment" cols="45" rows="6" required></textarea></p>';
 
 	comment_form( apply_filters( 'woocommerce_product_review_comment_form_args', $comment_form, $product->get_id() ) );

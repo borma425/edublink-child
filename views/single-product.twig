@@ -15,9 +15,9 @@
     <main class="course-main-content">
       <div class="container">
         <div class="course-page">
-          <!-- بطاقة تفاصيل المنتج (على اليسار) -->
+        <!-- Product details card (left side) -->
           <div class="course-details-card">
-            <!-- شريط الخصم العلوي -->
+            <!-- Top discount ribbon -->
             {% if discount_percent > 0 %}
             <div class="discount-banner">
               <p class="discount-banner-text">
@@ -26,7 +26,7 @@
             </div>
             {% endif %}
 
-            <!-- صندوق الإحصائيات -->
+            <!-- Stats box -->
             <div class="stats-box">
               {% if book_pages %}
               <div class="stat-item">
@@ -48,9 +48,9 @@
               {% endif %}
             </div>
 
-            <!-- صندوق التفاصيل -->
+            <!-- Details box -->
             <div class="details-box">
-              <!-- الفئة -->
+              <!-- Category -->
               {% if categories|length > 0 %}
               <div class="detail-row">
                 <svg class="detail-icon" fill="none" viewBox="0 0 24 24">
@@ -65,7 +65,7 @@
               </div>
               {% endif %}
 
-              <!-- المؤلف/المحاضر -->
+              <!-- Author / Instructor -->
               {% if product_author %}
               <div class="detail-row">
                 <svg class="detail-icon" fill="none" viewBox="0 0 24 24">
@@ -79,7 +79,7 @@
               </div>
               {% endif %}
 
-              <!-- آخر تحديث -->
+              <!-- Last update -->
               {% if product_updated %}
               <div class="detail-row">
                 <svg class="detail-icon" fill="none" viewBox="0 0 24 24">
@@ -97,7 +97,7 @@
               {% endif %}
             </div>
 
-            <!-- صندوق السعر -->
+            <!-- Price box -->
             <div class="price-box">
               <div class="price-section">
                 {% if discount_percent > 0 %}
@@ -116,7 +116,7 @@
               </div>
             </div>
 
-            <!-- أزرار الإجراءات -->
+            <!-- Action buttons -->
             <div class="action-buttons">
               <button class="share-button" onclick="shareProduct()">
                 <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
@@ -130,7 +130,7 @@
               {% endif %}
             </div>
 
-            <!-- قائمة المميزات -->
+            <!-- Features list -->
             {% if first_five_features|length > 0 %}
             <div class="features-box">
               <div class="features-list">
@@ -148,14 +148,14 @@
             {% endif %}
           </div>
 
-          <!-- السكشن الموجود (على اليمين) -->
+          <!-- Right-hand section -->
           <div class="course-info-section">
-            <!-- صورة رئيسية للمنتج -->
+            <!-- Main product image -->
             <div class="main-product-image">
               <img src="{{ product_image }}" alt="{{ product_title }}" />
             </div>
 
-            <!-- جاليري صور -->
+            <!-- Images gallery -->
             {% if gallery_images|length > 0 %}
             <div class="gallery-images">
               {% for gallery_image in gallery_images|slice(0, 5) %}
@@ -166,7 +166,7 @@
             </div>
             {% endif %}
 
-            <!-- بادجات أعلى -->
+            <!-- Top badges -->
             <div class="product-badges">
               {% if students_count > 0 %}
               <div class="students-badge">
@@ -184,19 +184,19 @@
               </div>
             </div>
 
-            <!-- عنوان المنتج -->
+            <!-- Product title -->
             <div class="course-title">
               {{ product_title }}
             </div>
 
-            <!-- وصف المنتج -->
+            <!-- Product description -->
             <div class="course-description">
               {{ product_excerpt ?: product_content|striptags|slice(0, 200) ~ '...' }}
             </div>
           </div>
         </div>
 
-        <!-- نموذج إضافة تقييم جديد للمنتج -->
+        <!-- Add new review form for the product -->
         {% if reviews_form %}
         <div class="add-review-section">
           <div class="card-content">
@@ -215,7 +215,7 @@
         </div>
         {% endif %}
 
-        <!-- بطاقة التقييمات للمنتج (نفس تصميم صفحة الكورس/الباقة) -->
+       <!-- Reviews card for the product (same design as course/bundle pages) -->
         {% if course_reviews|length > 0 %}
         <div class="reviews-section">
           <!-- Ratings Overview -->
