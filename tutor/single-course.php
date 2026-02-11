@@ -107,6 +107,29 @@ if ( ! empty( $instructors ) ) {
 // Get students count
 $context['students_count'] = tutor_utils()->count_enrolled_users_by_course( $course_id );
 
+// Get enrolled students data (first 3 for avatars display)
+$enrolled_students = tutor_utils()->get_students_data_by_course_id( $course_id, 'ID', true );
+$context['students_avatars'] = array();
+if ( ! empty( $enrolled_students ) && is_array( $enrolled_students ) ) {
+	// Get first 3 students
+	$students_to_show = array_slice( $enrolled_students, 0, 3 );
+	foreach ( $students_to_show as $student ) {
+		// Get student ID - it might be in ID property or as the object itself
+		$student_id = isset( $student->ID ) ? $student->ID : ( is_object( $student ) ? $student->ID : $student );
+		if ( $student_id ) {
+			$avatar_url = get_avatar_url( $student_id, array( 'size' => 40 ) );
+			$display_name = isset( $student->display_name ) ? $student->display_name : '';
+			if ( $avatar_url ) {
+				$context['students_avatars'][] = array(
+					'id' => $student_id,
+					'avatar' => $avatar_url,
+					'name' => $display_name,
+				);
+			}
+		}
+	}
+}
+
 // Get course topics and content
 $topics = tutor_utils()->get_topics( $course_id );
 $context['topics'] = array();
@@ -183,7 +206,14 @@ $tags = get_the_terms( $course_id, 'course-tag' );
 $context['tags'] = $tags && ! is_wp_error( $tags ) ? $tags : array();
 
 // Get course meta fields
+// Use tutor_course_benefits() function which returns an array of benefits
+if ( function_exists( 'tutor_course_benefits' ) ) {
+	$benefits_array = tutor_course_benefits( $course_id );
+	// Convert array back to string with newlines for Twig template compatibility
+	$context['course_benefits'] = ! empty( $benefits_array ) ? implode( "\n", $benefits_array ) : '';
+} else {
 $context['course_benefits'] = get_post_meta( $course_id, '_tutor_course_benefits', true );
+}
 $context['course_requirements'] = get_post_meta( $course_id, '_tutor_course_requirements', true );
 $context['course_target_audience'] = get_post_meta( $course_id, '_tutor_course_target_audience', true );
 $context['course_material_includes'] = get_post_meta( $course_id, '_tutor_course_material_includes', true );
@@ -198,7 +228,9 @@ if ( ! $context['course_image'] ) {
 $context['course_updated'] = get_the_modified_date( 'F j, Y', $course_id );
 
 // Check if course has certificate
-$context['has_certificate'] = get_post_meta( $course_id, '_tutor_course_certificate', true ) ? true : false;
+// Tutor Pro Certificate addon uses 'tutor_course_certificate_template' meta field
+$certificate_template = get_post_meta( $course_id, 'tutor_course_certificate_template', true );
+$context['has_certificate'] = ! empty( $certificate_template );
 
 // Get WooCommerce product ID if course is sold via WooCommerce
 $context['product_id'] = null;

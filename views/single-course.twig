@@ -218,9 +218,15 @@
                   <div class="students-count">
                     <div class="students-count-text">عدد الطلاب المشتركين</div>
                     <div class="students-avatars">
+                      {% if students_avatars|length > 0 %}
+                        {% for student in students_avatars|slice(0, 3) %}
+                          <img class="avatar" src="{{ student.avatar }}" alt="{{ student.name ?: 'Student' }}" />
+                        {% endfor %}
+                      {% else %}
                       <img class="avatar" src="{{ theme_uri }}/assets/img/ellipse1.png" alt="Student" />
                       <img class="avatar" src="{{ theme_uri }}/assets/img/ellipse2.png" alt="Student" />
                       <img class="avatar" src="{{ theme_uri }}/assets/img/ellipse3.png" alt="Student" />
+                      {% endif %}
                       <div class="avatar-badge">{{ students_count }}+</div>
                     </div>
                   </div>
@@ -333,7 +339,7 @@
         {% endif %}
 
         <!-- بطاقة ماذا ستتعلم -->
-        {% if course_benefits %}
+        {% if course_benefits and course_benefits|trim %}
         <div class="learning-card">
           <!-- عنوان القسم -->
           <div class="section-header">
@@ -349,7 +355,7 @@
 
           <!-- شبكة التعلم -->
           <div class="learning-grid">
-            {% set benefits_array = course_benefits|split('\n') %}
+            {% set benefits_array = course_benefits|split('\n')|filter(b => b|trim) %}
             {% set half_count = (benefits_array|length / 2)|round %}
             <!-- العمود الأول -->
             <div class="learning-column">

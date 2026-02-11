@@ -195,6 +195,126 @@
             </div>
           </div>
         </div>
+
+        <!-- نموذج إضافة تقييم جديد للمنتج -->
+        {% if reviews_form %}
+        <div class="add-review-section">
+          <div class="card-content">
+            <div class="section-header">
+              <div class="section-icon-box">
+                <svg width="33" height="33" fill="none" viewBox="0 0 33 33">
+                  <path clip-rule="evenodd" d="M16.5 30.25C10.0182 30.25 6.77728 30.25 4.76365 28.2363C2.75 26.2228 2.75 22.9818 2.75 16.5C2.75 10.0182 2.75 6.77728 4.76365 4.76365C6.77728 2.75 10.0182 2.75 16.5 2.75C22.9818 2.75 26.2228 2.75 28.2363 4.76365C30.25 6.77728 30.25 10.0182 30.25 16.5C30.25 22.9818 30.25 26.2228 28.2363 28.2363C26.2228 30.25 22.9818 30.25 16.5 30.25ZM16.5 24.4062C17.0695 24.4062 17.5312 23.9445 17.5312 23.375V15.125C17.5312 14.5555 17.0695 14.0938 16.5 14.0938C15.9305 14.0938 15.4688 14.5555 15.4688 15.125V23.375C15.4688 23.9445 15.9305 24.4062 16.5 24.4062ZM16.5 9.625C17.2594 9.625 17.875 10.2406 17.875 11C17.875 11.7594 17.2594 12.375 16.5 12.375C15.7406 12.375 15.125 11.7594 15.125 11C15.125 10.2406 15.7406 9.625 16.5 9.625Z" fill="white" fill-rule="evenodd" />
+                </svg>
+              </div>
+              <h2 class="section-title">أضف تقييمك للمنتج</h2>
+            </div>
+            <div class="add-review-form">
+              {{ reviews_form|raw }}
+            </div>
+          </div>
+        </div>
+        {% endif %}
+
+        <!-- بطاقة التقييمات للمنتج (نفس تصميم صفحة الكورس/الباقة) -->
+        {% if course_reviews|length > 0 %}
+        <div class="reviews-section">
+          <!-- Ratings Overview -->
+          <div class="ratings-overview">
+            <div class="ratings-overview-content">
+              <!-- Header -->
+              <div class="ratings-header">
+                <div class="stars-icon">
+                  <svg width="33" height="33" fill="none" viewBox="0 0 33 33">
+                    <path d="M26.125 4.46875C26.6945 4.46875 27.1562 4.93046 27.1562 5.5V5.84375H27.5C28.0695 5.84375 28.5312 6.30546 28.5312 6.875C28.5312 7.44454 28.0695 7.90625 27.5 7.90625H27.1562V8.25C27.1562 8.81954 26.6945 9.28125 26.125 9.28125C25.5555 9.28125 25.0938 8.81954 25.0938 8.25V7.90625H24.75C24.1805 7.90625 23.7188 7.44454 23.7188 6.875C23.7188 6.30546 24.1805 5.84375 24.75 5.84375H25.0938V5.5C25.0938 4.93046 25.5555 4.46875 26.125 4.46875Z" fill="white" />
+                    <path d="M6.69284 3.4383C6.73408 3.29285 6.99226 3.29197 7.03447 3.43714C7.22725 4.10004 7.58472 5.0799 8.12526 5.61681C8.66581 6.15372 9.64805 6.50455 10.3122 6.69284C10.4577 6.73408 10.4586 6.99226 10.3134 7.03447C9.65049 7.22725 8.67064 7.58472 8.13374 8.12526C7.59683 8.66581 7.24599 9.64805 7.0577 10.3122C7.01646 10.4577 6.75828 10.4586 6.71606 10.3134C6.52329 9.65049 6.16583 8.67064 5.62528 8.13374C5.08472 7.59683 4.10249 7.24599 3.4383 7.0577C3.29285 7.01646 3.29197 6.75828 3.43714 6.71606C4.10004 6.52329 5.0799 6.16583 5.61681 5.62528C6.15372 5.08472 6.50455 4.10249 6.69284 3.4383Z" fill="white" />
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M13.8603 10.8585C15.3406 8.20285 16.0809 6.875 17.1875 6.875C18.2941 6.875 19.0344 8.20285 20.5147 10.8585L20.8978 11.5456C21.3184 12.3003 21.5288 12.6776 21.8567 12.9266C22.1847 13.1755 22.5932 13.268 23.4101 13.4528L24.1538 13.6211C27.0285 14.2715 28.4659 14.5967 28.8079 15.6964C29.1499 16.796 28.1699 17.942 26.2101 20.2337L25.7031 20.8266C25.1461 21.4779 24.8677 21.8035 24.7424 22.2064C24.6172 22.6091 24.6593 23.0436 24.7435 23.9125L24.8201 24.7035C25.1164 27.7612 25.2645 29.2901 24.3693 29.9698C23.474 30.6494 22.1282 30.0297 19.4366 28.7904L18.7402 28.4698C17.9754 28.1176 17.5929 27.9415 17.1875 27.9415C16.7822 27.9415 16.3996 28.1176 15.6349 28.4698L14.9384 28.7904C12.2468 30.0297 10.901 30.6494 10.0057 29.9698C9.11041 29.2901 9.25856 27.7612 9.55486 24.7035L9.63152 23.9125C9.71571 23.0436 9.75781 22.6091 9.63253 22.2064C9.50727 21.8035 9.22881 21.4779 8.67189 20.8266L8.16486 20.2337C6.20504 17.942 5.22514 16.796 5.56711 15.6964C5.90908 14.5967 7.34646 14.2715 10.2212 13.6211L10.9649 13.4528C11.7819 13.268 12.1903 13.1755 12.5183 12.9266C12.8462 12.6776 13.0566 12.3003 13.4773 11.5456L13.8603 10.8585Z" fill="white" />
+                  </svg>
+                </div>
+                <p class="ratings-title">تقييمات مشترين المنتج</p>
+              </div>
+
+              <!-- Ratings Content -->
+              <div class="ratings-content">
+                <div class="ratings-list-container">
+                  <div class="ratings-list">
+                    <!-- Rating rows will be generated dynamically -->
+                    {% for i in 5..1 %}
+                      {% set rating_count_local = 0 %}
+                      {% for review in course_reviews %}
+                        {% if review.rating == i %}
+                          {% set rating_count_local = rating_count_local + 1 %}
+                        {% endif %}
+                      {% endfor %}
+                      {% set percentage = rating_count_local > 0 ? (rating_count_local / course_reviews|length * 100)|round : 0 %}
+                      <div class="rating-row">
+                        <div class="stars-group">
+                          {% for j in 1..5 %}
+                            <svg class="star-icon {% if j <= i %}filled{% else %}empty{% endif %}" viewBox="0 0 24 24">
+                              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                            </svg>
+                          {% endfor %}
+                        </div>
+                        <div class="progress-container">
+                          <div class="progress-bg"></div>
+                          <div class="progress-fill" style="right: {{ 100 - percentage }}%"></div>
+                        </div>
+                        <p class="percentage">{{ percentage }}%</p>
+                      </div>
+                    {% endfor %}
+                  </div>
+                </div>
+                <div class="rating-summary">
+                  <div class="rating-summary-content">
+                    <p class="summary-title">التقييم</p>
+                    <div class="summary-stars">
+                      {% for i in 1..5 %}
+                        <svg class="star-icon {% if i <= rating_avg|round %}filled{% else %}empty{% endif %}" viewBox="0 0 24 24">
+                          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                        </svg>
+                      {% endfor %}
+                    </div>
+                    <p class="summary-rating">{{ rating_avg }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Review Cards -->
+          <div class="review-cards">
+            {% for review in course_reviews %}
+            <div class="review-card">
+              <div class="review-card-content">
+                <div class="review-header">
+                  <div class="review-header-inner">
+                    <div class="review-info-group">
+                      <div class="review-stars">
+                        {% for i in 1..5 %}
+                          <svg class="star-icon {% if i <= review.rating %}filled{% else %}empty{% endif %}" viewBox="0 0 16 16">
+                            <path d="M8 1.33l2.36 4.78L15.5 7.5l-3.5 3.41.83 4.83L8 13.68l-4.83 2.54.83-4.83L.5 7.5l5.14-.39L8 1.33z" />
+                          </svg>
+                        {% endfor %}
+                      </div>
+                      <div class="user-details">
+                        <p class="user-name">{{ review.author }}</p>
+                        <p class="review-date">{{ review.date|date('d/m/Y') }}</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="avatar">
+                    <img src="{{ review.avatar ?: theme_uri ~ '/assets/img/ellipse1.png' }}" alt="User Avatar" />
+                  </div>
+                </div>
+                <div class="review-text">
+                  <p>{{ review.content|slice(0, 200) }}{% if review.content|length > 200 %}... <span class="show-more">عرض المزيد</span>{% endif %}</p>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+        {% endif %}
+
       </div>
     </main>
     <!-- ===== END: Main Content ===== -->

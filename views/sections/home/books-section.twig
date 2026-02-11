@@ -1,5 +1,5 @@
     <!-- ===== START: Books Section ===== -->
-    <section class="learnsimply-books-section">
+    <section id="books" class="learnsimply-books-section">
         <div class="learnsimply-section-container">
             <div class="learnsimply-section-header">
                 <img src="{{ theme_uri }}/assets/icon-books.png" alt="" class="learnsimply-section-icon">
@@ -132,6 +132,12 @@
 
                     <!-- Price Section -->
                     <div class="price-section">
+                                {% if book.is_free or (book.price == 0 and not book.regular_price and not book.sale_price) %}
+                        {# Free book #}
+                        <div class="price-display">
+                            <p class="new-price">مجاني</p>
+                        </div>
+                                {% else %}
                                 {% if book.discount_percent > 0 %}
                         <div class="discount-badge">
                                         <p>خصم {{ book.discount_percent }}%</p>
@@ -146,10 +152,21 @@
                                         <p class="new-price">{{ book.price|number_format(2, '.', ',') }} ج.م</p>
                                     {% endif %}
                         </div>
+                                {% endif %}
                     </div>
 
                     <!-- Action Buttons -->
                     <div class="action-buttons">
+                                {% if book.is_free or (book.price == 0 and not book.regular_price and not book.sale_price) %}
+                            {# Free book - show get it free button #}
+                            <a 
+                                href="{{ book.product_url }}" 
+                                class="learnsimply-buy-now-button buy-button"
+                            >
+                                <span>احصل عليه مجاناً</span>
+                            </a>
+                                {% else %}
+                                    {# Paid book - show cart and buy buttons #}
                                 <button 
                                     type="button" 
                                     class="learnsimply-add-cart-button cart-button" 
@@ -166,6 +183,7 @@
                                 >
                             <span>اشتر الآن</span>
                                 </a>
+                                {% endif %}
                     </div>
                 </article>
                     {% endfor %}

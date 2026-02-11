@@ -1,5 +1,5 @@
     <!-- ===== START: Featured Courses Section ===== -->
-    <section class="learnsimply-featured-courses-section">
+    <section id="courses" class="learnsimply-featured-courses-section">
       <div class="learnsimply-section-container">
         <div class="learnsimply-section-header">
           <img
@@ -29,10 +29,10 @@
                 <div class="instructor-text">
                   {% if course.instructor %}
                     <p class="name">{{ course.instructor.display_name }}</p>
-                    <p class="title">{{ course.instructor.job_title|default('مدرس') }}</p>
+                    <p class="title">{{ course.instructor.job_title|default(instructor_title) }}</p>
                   {% else %}
                     <p class="name">م. احمد عادل</p>
-                    <p class="title">مهندس برمجيات</p>
+                    <p class="title">{{ instructor_title }}</p>
                   {% endif %}
                 </div>
 
@@ -206,6 +206,16 @@
 
             <!-- Action Buttons -->
             <div class="action-buttons">
+              {% if course.is_free %}
+                {# Free course - show enroll/start learning button #}
+                <a 
+                  href="{{ course.link }}" 
+                  class="learnsimply-buy-now-button buy-button"
+                >
+                  <span>ابدأ التعلم</span>
+                </a>
+              {% else %}
+                {# Paid course - show cart and buy buttons #}
               {% if course.product_id %}
                 <button 
                   type="button" 
@@ -224,6 +234,7 @@
               >
                 <span>اشتر الآن</span>
               </a>
+              {% endif %}
             </div>
           </article>
           {% endfor %}

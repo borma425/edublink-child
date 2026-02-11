@@ -171,6 +171,9 @@ if ( class_exists( 'WooCommerce' ) ) {
 						$product->sale_price = $sale_price ? floatval( $sale_price ) : null;
 						$product->price = $price ? floatval( $price ) : 0;
 						
+						// Check if product is free
+						$product->is_free = ( $product->price == 0 && ! $product->regular_price && ! $product->sale_price );
+						
 						// Calculate discount percentage
 						if ( $sale_price && $regular_price && $regular_price > 0 ) {
 							$product->discount_percent = round( ( ( $regular_price - $sale_price ) / $regular_price ) * 100 );

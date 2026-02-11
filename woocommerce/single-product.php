@@ -123,25 +123,97 @@ $context['tags'] = $tags && ! is_wp_error( $tags ) ? $tags : array();
 // Get product rating
 $context['rating'] = $product->get_average_rating();
 $context['rating_count'] = $product->get_rating_count();
+$context['rating_avg'] = $context['rating'];
 
 // Get product meta (for books)
 $context['book_pages'] = get_post_meta( $context['product_id'], '_book_pages', true );
 $context['book_available_count'] = get_post_meta( $context['product_id'], '_book_available_count', true );
 
+// Get product reviews (WooCommerce reviews) in a structure similar to Tutor LMS course reviews
+$context['course_reviews'] = array();
+$comments                  = get_comments(
+	array(
+		'post_id' => $context['product_id'],
+		'status'  => 'approve',
+		'type'    => 'review',
+		'number'  => 10,
+	)
+);
+if ( $comments && is_array( $comments ) ) {
+	foreach ( $comments as $comment ) {
+		$rating = intval( get_comment_meta( $comment->comment_ID, 'rating', true ) );
+
+		// Get avatar by user ID if available, otherwise by email
+		$avatar_source = $comment->user_id ? $comment->user_id : $comment->comment_author_email;
+		$avatar_url    = get_avatar_url(
+			$avatar_source,
+			array(
+				'size' => 40,
+			)
+		);
+
+		$context['course_reviews'][] = array(
+			'id'      => $comment->comment_ID,
+			'author'  => $comment->comment_author,
+			'rating'  => $rating,
+			'content' => $comment->comment_content,
+			'date'    => $comment->comment_date,
+			'avatar'  => $avatar_url,
+		);
+	}
+}
+
+// Build WooCommerce review form HTML (stars + comment) to use in Twig
+$context['reviews_form'] = '';
+if ( comments_open( $context['product_id'] ) ) {
+	ob_start();
+
+	$comment_form = array(
+		'title_reply'          => '',
+		'title_reply_to'       => '',
+		'label_submit'         => __( 'إرسال التقييم', 'woocommerce' ),
+		'comment_notes_before' => '',
+		'comment_notes_after'  => '',
+	);
+
+	// Custom rating + textarea structure (stars + hidden select) similar to theme's original markup.
+	if ( wc_review_ratings_enabled() ) {
+		$comment_form['comment_field']  = '<div class="comment-form-rating">';
+		// Arabic label: "تقييمك" مع توضيح اختيار عدد النجوم
+		$comment_form['comment_field'] .= '<label for="rating" id="comment-form-rating-label">' . esc_html__( 'تقييمك (اختر عدد النجوم من 1 إلى 5)', 'woocommerce' ) . ( wc_review_ratings_required() ? '&nbsp;<span class="required">*</span>' : '' ) . '</label>';
+		$comment_form['comment_field'] .= '<p class="stars"><span role="group" aria-labelledby="comment-form-rating-label">';
+		$comment_form['comment_field'] .= '<a role="radio" tabindex="0" aria-checked="false" class="star-1" href="#">1 ' . esc_html__( 'من أصل 5 نجوم', 'woocommerce' ) . '</a>';
+		$comment_form['comment_field'] .= '<a role="radio" tabindex="-1" aria-checked="false" class="star-2" href="#">2 ' . esc_html__( 'من أصل 5 نجوم', 'woocommerce' ) . '</a>';
+		$comment_form['comment_field'] .= '<a role="radio" tabindex="-1" aria-checked="false" class="star-3" href="#">3 ' . esc_html__( 'من أصل 5 نجوم', 'woocommerce' ) . '</a>';
+		$comment_form['comment_field'] .= '<a role="radio" tabindex="-1" aria-checked="false" class="star-4" href="#">4 ' . esc_html__( 'من أصل 5 نجوم', 'woocommerce' ) . '</a>';
+		$comment_form['comment_field'] .= '<a role="radio" tabindex="-1" aria-checked="false" class="star-5" href="#">5 ' . esc_html__( 'من أصل 5 نجوم', 'woocommerce' ) . '</a>';
+		$comment_form['comment_field'] .= '</span></p>';
+		$comment_form['comment_field'] .= '<select name="rating" id="rating" required style="display:none;">';
+		$comment_form['comment_field'] .= '<option value="">' . esc_html__( 'Rate…', 'woocommerce' ) . '</option>';
+		$comment_form['comment_field'] .= '<option value="5">' . esc_html__( 'Perfect', 'woocommerce' ) . '</option>';
+		$comment_form['comment_field'] .= '<option value="4">' . esc_html__( 'Good', 'woocommerce' ) . '</option>';
+		$comment_form['comment_field'] .= '<option value="3">' . esc_html__( 'Average', 'woocommerce' ) . '</option>';
+		$comment_form['comment_field'] .= '<option value="2">' . esc_html__( 'Not that bad', 'woocommerce' ) . '</option>';
+		$comment_form['comment_field'] .= '<option value="1">' . esc_html__( 'Very poor', 'woocommerce' ) . '</option>';
+		$comment_form['comment_field'] .= '</select>';
+		$comment_form['comment_field'] .= '</div>';
+	} else {
+		$comment_form['comment_field'] = '';
+	}
+
+	// Review textarea - Arabic label: "مراجعتك"
+	$comment_form['comment_field'] .= '<p class="comment-form-comment"><label for="comment">' . esc_html__( 'مراجعتك', 'woocommerce' ) . '&nbsp;<span class="required">*</span></label><textarea id="comment" name="comment" cols="45" rows="6" required></textarea></p>';
+
+	comment_form( apply_filters( 'woocommerce_product_review_comment_form_args', $comment_form, $product->get_id() ) );
+
+	$context['reviews_form'] = ob_get_clean();
+}
+
 // Get product updated date
 $context['product_updated'] = get_the_modified_date( 'F j, Y', $context['product_id'] );
 
-// Get product author (if linked to Tutor course)
-$context['product_author'] = null;
-if ( function_exists( 'tutor_utils' ) ) {
-	$course_id = tutor_utils()->get_course_id_by_product( $context['product_id'] );
-	if ( $course_id ) {
-		$instructors = tutor_utils()->get_instructors_by_course( $course_id );
-		if ( ! empty( $instructors ) && isset( $instructors[0]->ID ) ) {
-			$context['product_author'] = Timber::get_user( $instructors[0]->ID );
-		}
-	}
-}
+// Get product author (WooCommerce product post author)
+$context['product_author'] = Timber::get_user( $product_post->post_author );
 
 // Get product type
 $context['product_type'] = $product->get_type();

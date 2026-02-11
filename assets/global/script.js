@@ -7,18 +7,17 @@ console.log("🚀 Script loaded successfully!");
 
 // ===== GLOBAL FAQ FUNCTION =====
 window.toggleFaq = function (button) {
-  console.log("🔥 toggleFaq called!", button);
+  console.log("FAQ button clicked!", button);
 
   const faqItem = button.closest(".faq-accordion-item");
-  console.log("📦 Found FAQ item:", faqItem);
 
   if (!faqItem) {
-    console.error("❌ Could not find faq-accordion-item parent");
+    console.error("Could not find FAQ item");
     return;
   }
 
   const isActive = faqItem.classList.contains("active");
-  console.log("🔍 Is currently active:", isActive);
+  console.log("Currently active:", isActive);
 
   // Close all other FAQ items
   document.querySelectorAll(".faq-accordion-item").forEach((item) => {
@@ -28,13 +27,12 @@ window.toggleFaq = function (button) {
   });
 
   // Toggle current FAQ item
-  if (isActive) {
-    faqItem.classList.remove("active");
-    console.log("⬇️ Removed active class from current item");
-  } else {
-    faqItem.classList.add("active");
-    console.log("⬆️ Added active class to current item");
-  }
+  faqItem.classList.toggle("active");
+
+  console.log(
+    "FAQ item toggled. New state:",
+    faqItem.classList.contains("active"),
+  );
 };
 
 console.log("🚀 FAQ script loaded successfully!");
@@ -225,6 +223,29 @@ console.log("🚀 FAQ script loaded successfully!");
     );
 
     sections.forEach((section) => observer.observe(section));
+  }
+
+  /**
+   * Backwards-compatible wrapper used in original static project
+   * Simply delegates to our header navigation initializer.
+   */
+  function HeaderNavigation() {
+    initHeaderNavigation();
+  }
+
+  /**
+   * Backwards-compatible no-op for original smooth scroll helper.
+   * Our smooth scroll logic is already inside initHeaderNavigation.
+   */
+  function initNavigationSmoothScroll() {
+    // Smooth scrolling is handled inside initHeaderNavigation via data-target attributes.
+  }
+
+  /**
+   * Backwards-compatible wrapper mapping to our scroll-based header updater.
+   */
+  function updateActiveNavigationOnScroll() {
+    updateHeaderNavigationOnScroll();
   }
 
   // ===== FAQ ACCORDION FUNCTIONALITY =====
@@ -837,6 +858,37 @@ console.log("🚀 FAQ script loaded successfully!");
     bannerContent.parentNode.appendChild(clone);
   }
 
+  /**
+   * Match marquee speed and behavior from the reference HTML project.
+   * Measures one track width and sets CSS variables used by the marquee animation.
+   */
+  function setupMarquee() {
+    const content = document.querySelector(".marquee-content");
+    const track = document.querySelector(".marquee-track");
+    if (!content || !track) return;
+
+    function recalc() {
+      // width of one track (including gaps)
+      const trackWidth = track.getBoundingClientRect().width;
+      // desired speed in pixels per second (same as reference project)
+      const speed = 120; // px/s
+      const duration = Math.max(8, Math.round(trackWidth / speed));
+
+      content.style.setProperty("--track-width", trackWidth + "px");
+      content.style.setProperty("--marquee-duration", duration + "s");
+    }
+
+    // initial calc
+    recalc();
+
+    // recalc on resize
+    let resizeTimer;
+    window.addEventListener("resize", () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(recalc, 150);
+    });
+  }
+
   // ===== FORM VALIDATION (if forms exist) =====
 
   /**
@@ -941,6 +993,7 @@ console.log("🚀 FAQ script loaded successfully!");
     initBuyNow();
     initLazyLoading();
     initArchiveCheckIcons();
+    setupMarquee();
     initBannerAnimation();
     initFormValidation();
     initKeyboardAccessibility();

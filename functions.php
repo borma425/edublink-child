@@ -37,6 +37,7 @@ if ( class_exists( 'Timber\Timber' ) ) {
 		$context['is_front_page'] = is_front_page();
 		$context['is_home'] = is_home();
 		$context['is_user_logged_in'] = is_user_logged_in();
+		$context['instructor_title'] = 'مهندس برمجيات';
 		
 		if ( is_user_logged_in() ) {
 			$context['user'] = Timber::get_user( get_current_user_id() );
@@ -198,9 +199,15 @@ function edublink_child_enqueue_styles() {
 			wp_enqueue_style( 'edublink-custom-course-style', get_stylesheet_directory_uri() . '/custom_course.css', array( 'edublink-child-style' ), wp_get_theme()->get( 'Version' ) );
 		}
 		if ( is_post_type_archive( $course_post_type ) || is_tax( 'course-category' ) || is_tax( 'course-tag' ) ) {
-			wp_enqueue_style( 'edublink-custom-course-archive-style', get_stylesheet_directory_uri() . '/custom_course_archive.css', array( 'edublink-child-style' ), wp_get_theme()->get( 'Version' ) );
-			wp_dequeue_style( 'tutor-frontend' );
-			wp_dequeue_style( 'tutor' );
+			// نريد في هذه المرحلة الحفاظ على تصميم القالب الأصلي لأرشيف الكورسات
+			// لذلك لا نحذف ستايلات Tutor LMS أو الثيم، ونكتفي فقط بتحميل ملفنا الإضافي إذا احتجنا لاحقاً
+			wp_enqueue_style(
+				'edublink-custom-course-archive-style',
+				get_stylesheet_directory_uri() . '/custom_course_archive.css',
+				array( 'edublink-child-style' ),
+				wp_get_theme()->get( 'Version' )
+			);
+			// ملاحظة: تم إلغاء wp_dequeue_style( 'tutor-frontend' ) و wp_dequeue_style( 'tutor' ) حتى لا يختفي التصميم الأصلي
 		}
 	}
 }

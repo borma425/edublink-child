@@ -321,29 +321,13 @@
 
 	/**
 	 * Initialize FAQ Accordion
+	 * Note: FAQ uses onclick="toggleFaq(this)" in HTML, so no event listeners needed here
+	 * The toggleFaq function is defined globally in assets/global/script.js
 	 */
 	function initFAQAccordion() {
-		const faqItems = document.querySelectorAll('.faq-accordion-item');
-		
-		faqItems.forEach(function(item) {
-			const button = item.querySelector('.faq-question');
-			if (!button) return;
-			
-			button.addEventListener('click', function() {
-				// Toggle active class
-				const isActive = item.classList.contains('active');
-				
-				// Close all items
-				faqItems.forEach(function(otherItem) {
-					otherItem.classList.remove('active');
-				});
-				
-				// Open clicked item if it wasn't active
-				if (!isActive) {
-					item.classList.add('active');
-				}
-			});
-		});
+		// FAQ functionality is handled by window.toggleFaq() via onclick attribute
+		// No additional initialization needed
+		return;
 	}
 
 })();

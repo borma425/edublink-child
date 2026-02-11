@@ -1,74 +1,9 @@
-/* Custom Course Archive Styles - Raw Design */
-.custom-archive-title {
-	color: red;
-}
-
-/* Remove ALL Tutor LMS and theme styles from course archive page */
-body.archive .site-content,
-body.archive .site-content *,
-body.post-type-archive-courses .site-content,
-body.post-type-archive-courses .site-content *,
-body.tax-course-category .site-content,
-body.tax-course-category .site-content *,
-body.tax-course-tag .site-content,
-body.tax-course-tag .site-content * {
-	all: unset !important;
-	display: revert !important;
-	font-family: inherit !important;
-	color: inherit !important;
-	background: none !important;
-	border: none !important;
-	margin: 0 !important;
-	padding: 0 !important;
-	box-shadow: none !important;
-	text-shadow: none !important;
-	text-decoration: none !important;
-	line-height: normal !important;
-	font-size: inherit !important;
-	font-weight: normal !important;
-	font-style: normal !important;
-	letter-spacing: normal !important;
-	text-transform: none !important;
-	text-align: left !important;
-	vertical-align: baseline !important;
-	opacity: 1 !important;
-	visibility: visible !important;
-	position: static !important;
-	width: auto !important;
-	height: auto !important;
-	overflow: visible !important;
-	transform: none !important;
-	transition: none !important;
-	animation: none !important;
-}
-
-/* Remove Tutor LMS specific classes */
-body.archive .tutor-wrap,
-body.archive .tutor-wrap *,
-body.post-type-archive-courses .tutor-wrap,
-body.post-type-archive-courses .tutor-wrap *,
-body.archive .tutor-courses-wrap,
-body.archive .tutor-courses-wrap *,
-body.post-type-archive-courses .tutor-courses-wrap,
-body.post-type-archive-courses .tutor-courses-wrap *,
-body.archive .tutor-course-loop,
-body.archive .tutor-course-loop *,
-body.post-type-archive-courses .tutor-course-loop,
-body.post-type-archive-courses .tutor-course-loop * {
-	all: unset !important;
-	display: revert !important;
-}
-
-/* Remove EduBlink theme classes */
-body.archive .edublink-row,
-body.archive .edublink-row *,
-body.post-type-archive-courses .edublink-row,
-body.post-type-archive-courses .edublink-row *,
-body.archive .edublink-col-lg-4,
-body.archive .edublink-col-lg-4 *,
-body.post-type-archive-courses .edublink-col-lg-4,
-body.post-type-archive-courses .edublink-col-lg-4 * {
-	all: unset !important;
-	display: revert !important;
-}
+/* Custom Course Archive Styles
+ * ملاحظة مهمة:
+ * هذا الملف الآن مخصّص فقط لإضافة تعديلات بسيطة (إن احتجنا)،
+ * ولا يقوم أبداً بمسح/إلغاء ستايلات Tutor LMS أو الثيم الأصلي.
+ *
+ * إذا أردت لاحقاً تعديل تصميم الأرشيف، أضف هنا كود CSS عادي
+ * يعتمد على الكلاسات الموجودة في القالب الأصلي بدلاً من إلغاء كل شيء بـ all: unset.
+ */
 

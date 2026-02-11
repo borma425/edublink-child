@@ -1007,6 +1007,8 @@
   overflow: clip;
   cursor: pointer;
   transition: all 0.3s ease;
+  text-decoration: none;
+  color: inherit;
 }
 
 .button-dark {
@@ -1054,6 +1056,8 @@
   overflow: clip;
   cursor: pointer;
   transition: all 0.3s ease;
+  text-decoration: none;
+  color: inherit;
 }
 
 .button-light:hover {
