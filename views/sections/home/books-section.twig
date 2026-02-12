@@ -94,17 +94,18 @@
 
                     <!-- Book Info -->
                     <div class="book-info">
+                        {% if book.stock_quantity or book.stock_status %}
                         <div class="info-item">
                             <img class="info-icon" src="{{ theme_uri }}/assets/img/Archive Check.png" alt="متوفر" />
-                                    <p>
-                                        {% if book.stock_quantity %}
-                                            +{{ book.stock_quantity }} متوفر
-                                        {% elseif book.stock_status == 'instock' %}
-                                            متوفر
-                                        {% else %}
-                                            غير متوفر
-                                        {% endif %}
-                                    </p>
+                            <p>
+                                {% if book.stock_quantity %}
+                                    +{{ book.stock_quantity }} متوفر
+                                {% elseif book.stock_status == 'instock' %}
+                                    متوفر
+                                {% else %}
+                                    غير متوفر
+                                {% endif %}
+                            </p>
                         </div>
 
                         <div class="info-divider">
@@ -112,6 +113,7 @@
                                 <line stroke="white" strokeOpacity="0.05" x2="32" y1="0.5" y2="0.5" />
                             </svg>
                         </div>
+                        {% endif %}
 
                         <div class="info-item">
                             <svg class="info-icon" fill="none" viewBox="0 0 24 24">
@@ -120,13 +122,13 @@
                                 <path d="M8 7h8M8 10.5h5" stroke="#999EB2" strokeWidth="1.5" strokeLinecap="round"/>
                                 <path d="M19.5 19H8" stroke="#999EB2" strokeWidth="1.5" strokeLinecap="round"/>
                             </svg>
-                                    <p>
-                                        {% if book.pages %}
-                                            {{ book.pages }} صفحة
-                                        {% else %}
-                                            —
-                                        {% endif %}
-                                    </p>
+                            <p>
+                                {% if book.pages and book.pages != '' %}
+                                    {{ book.pages }} صفحة
+                                {% else %}
+                                    —
+                                {% endif %}
+                            </p>
                         </div>
                     </div>
 
