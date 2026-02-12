@@ -251,6 +251,8 @@
   cursor: pointer;
   transition: all 0.3s ease;
   flex-shrink: 0;
+  text-decoration: none;
+  pointer-events: auto;
 }
 
 .learnsimply-header-btn-login {
@@ -287,6 +289,7 @@
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
+  pointer-events: none;
   line-height: 150%; /* 24px */
   letter-spacing: -0.32px;
   white-space: nowrap;
