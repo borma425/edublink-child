@@ -208,9 +208,18 @@
               </div>
               <h2 class="section-title">أضف تقييمك للمنتج</h2>
             </div>
+
+            {% if is_user_logged_in %}
             <div class="add-review-form">
               {{ reviews_form|raw }}
             </div>
+            {% else %}
+            <div class="add-review-form">
+              <p class="login-required-message">
+                يجب تسجيل الدخول أولًا قبل إضافة تقييم.
+              </p>
+            </div>
+            {% endif %}
           </div>
         </div>
         {% endif %}

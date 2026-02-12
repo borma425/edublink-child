@@ -174,6 +174,8 @@ if ( comments_open( $context['product_id'] ) ) {
 		'label_submit'         => __( 'إرسال التقييم', 'woocommerce' ),
 		'comment_notes_before' => '',
 		'comment_notes_after'  => '',
+		// Remove name/email/website fields – reviews rely on logged-in user data only.
+		'fields'               => array(),
 	);
 
 	// Custom rating + textarea structure (stars + hidden select) similar to theme's original markup.

@@ -1,0 +1,63 @@
+/* Root-level protection for header and footer styles
+ * This file is loaded last to minimize unwanted overrides
+ * from page-specific or plugin styles.
+ */
+
+/* Header root styles */
+.learnsimply-header-main-container,
+.learnsimply-header-main-container * {
+  box-sizing: border-box;
+}
+
+.learnsimply-header-main-container {
+  position: fixed !important;
+  left: 50% !important;
+  top: 10px !important;
+  transform: translateX(-50%) !important;
+  z-index: 1000 !important;
+  border-radius: 20px !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  background: rgba(10, 15, 26, 0.8) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+}
+
+.learnsimply-header-logo-text,
+.learnsimply-header-menu-text,
+.learnsimply-header-btn-text {
+  font-family: "Graphik Arabic", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+  color: #ffffff !important;
+}
+
+.learnsimply-header-logo-image,
+.learnsimply-header-logo-image-wrapper img {
+  max-width: 100% !important;
+  height: auto !important;
+  display: block !important;
+}
+
+/* Footer root styles */
+.learnsimply-footer-section {
+  position: relative !important;
+  width: 100% !important;
+  background-color: #050816 !important;
+  color: #ffffff !important;
+}
+
+.learnsimply-footer-section a {
+  color: inherit !important;
+  text-decoration: none;
+}
+
+.learnsimply-footer-logo-image {
+  max-width: 100% !important;
+  height: auto !important;
+  display: block !important;
+}
+
+.learnsimply-footer-section img {
+  max-width: 100% !important;
+  height: auto !important;
+}
+
+

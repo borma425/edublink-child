@@ -1,0 +1,20 @@
+/**
+ * Global Custom Override CSS
+ * 
+ * This file is loaded last on all pages and can override any CSS.
+ * Add your custom CSS rules here to modify any element on any page.
+ * 
+ * This file loads with highest priority (after all other stylesheets),
+ * so your rules will take precedence.
+ */
+
+/* ========================================
+   Add your custom CSS rules below
+   ======================================== */
+
+/* Example:
+   .some-class {
+       color: red !important;
+   }
+*/
+

@@ -400,10 +400,10 @@
     max-width: 100%;
   }
 
-.reviews-section {
-  margin-left: 0;
-  max-width: 100%;
-}
+  .reviews-section {
+    margin-left: 0;
+    max-width: 100%;
+  }
 
 /* ===== Add Review Section (above reviews-section) ===== */
 .add-review-section {

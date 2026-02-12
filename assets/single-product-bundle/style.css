@@ -9695,10 +9695,10 @@ width: 100%;
     max-width: 100%;
   }
 
-.reviews-section {
-  margin-left: 0;
-  max-width: 100%;
-}
+  .reviews-section {
+    margin-left: 0;
+    max-width: 100%;
+  }
 
 /* (moved global .add-review-section styles higher in the file) */
 

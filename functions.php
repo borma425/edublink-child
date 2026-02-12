@@ -34,6 +34,9 @@ if ( class_exists( 'Timber\Timber' ) ) {
 	 */
 	add_filter( 'timber/context', 'edublink_child_add_to_context' );
 	function edublink_child_add_to_context( $context ) {
+		// Global theme URI for assets in Twig (images, CSS, JS)
+		$context['theme_uri'] = get_stylesheet_directory_uri();
+		
 		$context['is_front_page'] = is_front_page();
 		$context['is_home'] = is_home();
 		$context['is_user_logged_in'] = is_user_logged_in();
@@ -380,15 +383,37 @@ function edublink_child_add_page_css_late() {
 		}
 	}
 	
-	// Add CSS via wp_head to ensure it loads after all other styles (including Elementor)
-	if ( ! empty( $page_type ) && is_dir( $assets_dir . '/' . $page_type ) ) {
+	// 1) Add CSS via wp_head to ensure it loads after all other styles (including Elementor)
+	//    BUT only for pages that really needed hard overrides (dashboard + signup).
+	if ( in_array( $page_type, array( 'dashboard', 'signup' ), true ) && is_dir( $assets_dir . '/' . $page_type ) ) {
 		$css_file = $assets_dir . '/' . $page_type . '/style.css';
 		if ( file_exists( $css_file ) ) {
 			echo '<link rel="stylesheet" id="edublink-' . esc_attr( $page_type ) . '-style-late" href="' . esc_url( $assets_uri . '/' . $page_type . '/style.css?v=' . filemtime( $css_file ) ) . '" type="text/css" media="all" />' . "\n";
 		}
 	}
+
+	// 2) Always load header/footer root protection last, on all pages.
+	$hf_css = $assets_dir . '/header-footer-root.css';
+	if ( file_exists( $hf_css ) ) {
+		echo '<link rel="stylesheet" id="edublink-header-footer-root-style" href="' . esc_url( $assets_uri . '/header-footer-root.css?v=' . filemtime( $hf_css ) ) . '" type="text/css" media="all" />' . "\n";
+	}
 }
 add_action( 'wp_head', 'edublink_child_add_page_css_late', 9999 );
+
+/**
+ * Load global custom override CSS file (highest priority - loads last)
+ * This file can override any CSS on any page across the entire site
+ */
+function edublink_child_load_global_override_css() {
+	$override_css = get_stylesheet_directory() . '/assets/global/custom-override.css';
+	$override_css_uri = get_stylesheet_directory_uri() . '/assets/global/custom-override.css';
+	
+	if ( file_exists( $override_css ) ) {
+		// Load with priority 10000 (higher than header-footer-root.css) to be the absolute last CSS file
+		echo '<link rel="stylesheet" id="edublink-global-override-style" href="' . esc_url( $override_css_uri . '?v=' . filemtime( $override_css ) ) . '" type="text/css" media="all" />' . "\n";
+	}
+}
+add_action( 'wp_head', 'edublink_child_load_global_override_css', 10000 );
 
 /**
  * Remove WooCommerce CSS
